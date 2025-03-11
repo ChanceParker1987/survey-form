@@ -4,16 +4,48 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
-		<title>Event Registration Form</title>
+		<title>Video Game Survey</title>
 	</head>
 	<body>
 		<form id="surveyForm" action="#">
-			<h1>Survey</h1>
+			<h1>Video Game Survey</h1>
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="name" required />
 
 			<label for="email">Email:</label>
 			<input type="email" id="email" name="email" required />
+
+			<!-- Single-choice question (Radio Buttons) -->
+			<fieldset>
+				<legend>What is your favorite gaming platform?</legend>
+				<input type="radio" id="pc" name="platform" value="pc" required />
+				<label for="pc">PC</label>
+				
+				<input type="radio" id="playstation" name="platform" value="playstation" required />
+				<label for="playstation">PlayStation</label>
+				
+				<input type="radio" id="xbox" name="platform" value="xbox" required />
+				<label for="xbox">Xbox</label>
+
+				<input type="radio" id="switch" name="platform" value="switch" required />
+				<label for="switch">Nintendo Switch</label>
+			</fieldset>
+
+			<!-- Multiple-choice question (Checkboxes) -->
+			<fieldset>
+				<legend>Which genres of games do you enjoy?</legend>
+				<input type="checkbox" id="fps" name="genres" value="fps" />
+				<label for="fps">First-Person Shooter (FPS)</label>
+				
+				<input type="checkbox" id="rpg" name="genres" value="rpg" />
+				<label for="rpg">Role-Playing Game (RPG)</label>
+				
+				<input type="checkbox" id="strategy" name="genres" value="strategy" />
+				<label for="strategy">Strategy</label>
+
+				<input type="checkbox" id="sports" name="genres" value="sports" />
+				<label for="sports">Sports</label>
+			</fieldset>
 
 			<button type="submit">Submit</button>
 		</form>
