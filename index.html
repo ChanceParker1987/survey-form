@@ -11,9 +11,11 @@
 			<h1>Video Game Survey</h1>
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="name" required />
+			<span id="nameError" class="error-message" aria-live="polite"></span>
 
 			<label for="email">Email:</label>
 			<input type="email" id="email" name="email" required />
+			<span id="emailError" class="error-message" aria-live="polite"></span>
 
 			<!-- Username with Regex Validation -->
 			<label for="username">Username (Only letters, numbers, and underscores, 3-15 characters):</label>
@@ -23,10 +25,12 @@
 			<!-- Date Picker -->
 			<label for="birthdate">Date of Birth:</label>
 			<input type="date" id="birthdate" name="birthdate" required />
+			<span id="birthdateError" class="error-message" aria-live="polite"></span>
 
 			<!-- Number Input -->
 			<label for="gamingHours">How many hours per week do you play video games?</label>
 			<input type="number" id="gamingHours" name="gamingHours" min="0" max="100" required />
+			<span id="gamingHoursError" class="error-message" aria-live="polite"></span>
 
 			<!-- Single-choice question (Radio Buttons) -->
 			<fieldset>
@@ -43,6 +47,7 @@
 				<input type="radio" id="switch" name="platform" value="switch" required />
 				<label for="switch">Nintendo Switch</label>
 			</fieldset>
+			<span id="platformError" class="error-message" aria-live="polite"></span>
 
 			<!-- Multiple-choice question (Checkboxes) -->
 			<fieldset>
@@ -59,6 +64,7 @@
 				<input type="checkbox" id="sports" name="genres" value="sports" />
 				<label for="sports">Sports</label>
 			</fieldset>
+			<span id="genresError" class="error-message" aria-live="polite"></span>
 
 			<!-- Dropdown Menu -->
 			<label for="favoriteGame">What is your favorite video game?</label>
@@ -70,6 +76,7 @@
 				<option value="zelda">The Legend of Zelda</option>
 				<option value="gta5">Grand Theft Auto V</option>
 			</select>
+			<span id="favoriteGameError" class="error-message" aria-live="polite"></span>
 
 			<button type="submit">Submit</button>
 		</form>
