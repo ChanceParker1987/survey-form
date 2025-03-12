@@ -33,38 +33,46 @@
 			<span id="gamingHoursError" class="error-message" aria-live="polite"></span>
 
 			<!-- Single-choice question (Radio Buttons) -->
-			<fieldset>
+			<fieldset class="radio-group">
 				<legend>What is your favorite gaming platform?</legend>
-				<input type="radio" id="pc" name="platform" value="pc" required />
-				<label for="pc">PC</label>
-				
-				<input type="radio" id="playstation" name="platform" value="playstation" required />
-				<label for="playstation">PlayStation</label>
-				
-				<input type="radio" id="xbox" name="platform" value="xbox" required />
-				<label for="xbox">Xbox</label>
-
-				<input type="radio" id="switch" name="platform" value="switch" required />
-				<label for="switch">Nintendo Switch</label>
+				<div>
+					<input type="radio" id="pc" name="platform" value="pc" required />
+					<label for="pc">PC</label>
+				</div>
+				<div>
+					<input type="radio" id="playstation" name="platform" value="playstation" required />
+					<label for="playstation">PlayStation</label>
+				</div>
+				<div>
+					<input type="radio" id="xbox" name="platform" value="xbox" required />
+					<label for="xbox">Xbox</label>
+				</div>
+				<div>
+					<input type="radio" id="switch" name="platform" value="switch" required />
+					<label for="switch">Nintendo Switch</label>
+				</div>
 			</fieldset>
-			<span id="platformError" class="error-message" aria-live="polite"></span>
 
 			<!-- Multiple-choice question (Checkboxes) -->
-			<fieldset>
+			<fieldset class="checkbox-group">
 				<legend>Which genres of games do you enjoy?</legend>
-				<input type="checkbox" id="fps" name="genres" value="fps" />
-				<label for="fps">First-Person Shooter (FPS)</label>
-				
-				<input type="checkbox" id="rpg" name="genres" value="rpg" />
-				<label for="rpg">Role-Playing Game (RPG)</label>
-				
-				<input type="checkbox" id="strategy" name="genres" value="strategy" />
-				<label for="strategy">Strategy</label>
-
-				<input type="checkbox" id="sports" name="genres" value="sports" />
-				<label for="sports">Sports</label>
+				<div>
+					<input type="checkbox" id="fps" name="genres" value="fps" />
+					<label for="fps">First-Person Shooter (FPS)</label>
+				</div>
+				<div>
+					<input type="checkbox" id="rpg" name="genres" value="rpg" />
+					<label for="rpg">Role-Playing Game (RPG)</label>
+				</div>
+				<div>
+					<input type="checkbox" id="strategy" name="genres" value="strategy" />
+					<label for="strategy">Strategy</label>
+				</div>
+				<div>
+					<input type="checkbox" id="sports" name="genres" value="sports" />
+					<label for="sports">Sports</label>
+				</div>
 			</fieldset>
-			<span id="genresError" class="error-message" aria-live="polite"></span>
 
 			<!-- Dropdown Menu -->
 			<label for="favoriteGame">What is your favorite video game?</label>
@@ -83,6 +91,7 @@
 		<script src="script.js"></script>
 	</body>
 </html>
+
 
 
 
