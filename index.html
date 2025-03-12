@@ -20,6 +20,14 @@
 			<input type="text" id="username" name="username" pattern="^[a-zA-Z0-9_]{3,15}$" title="Username must be 3-15 characters long and can only contain letters, numbers, and underscores." required />
 			<span id="usernameError" class="error-message" aria-live="polite"></span>
 
+			<!-- Date Picker -->
+			<label for="birthdate">Date of Birth:</label>
+			<input type="date" id="birthdate" name="birthdate" required />
+
+			<!-- Number Input -->
+			<label for="gamingHours">How many hours per week do you play video games?</label>
+			<input type="number" id="gamingHours" name="gamingHours" min="0" max="100" required />
+
 			<!-- Single-choice question (Radio Buttons) -->
 			<fieldset>
 				<legend>What is your favorite gaming platform?</legend>
