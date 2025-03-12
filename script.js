@@ -2,27 +2,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("surveyForm");
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent form submission until validation passes
+        event.preventDefault(); // Prevent actual form submission
+
+        // Clear any previous error messages
         clearErrors();
 
         let isValid = true;
 
+        // Validate text fields
         if (!isNotEmpty("name")) isValid = false;
         if (!isValidEmail("email")) isValid = false;
         if (!isValidUsername("username")) isValid = false;
-        if (!isNotEmpty("birthdate")) isValid = false;
-        if (!isPositiveNumber("gamingHours")) isValid = false;
+
+        // Validate radio buttons
         if (!hasCheckedOption("platform")) isValid = false;
-        if (!hasCheckedOption("genres")) isValid = false;
+
+        // Validate checkboxes
+        if (!hasCheckedCheckbox("genres")) isValid = false;
+
+        // Validate dropdown
         if (!isSelected("favoriteGame")) isValid = false;
 
-        if (isValid) form.submit();
+        if (isValid) {
+            alert("Form submitted successfully!");
+            form.submit(); // Submit the form if all validations pass
+        }
     });
 
+    // Validation functions
     function isNotEmpty(fieldId) {
         const field = document.getElementById(fieldId);
         if (field.value.trim() === "") {
-            showError(fieldId, "This field cannot be empty.");
+            showError(field, "This field cannot be empty.");
             return false;
         }
         return true;
@@ -30,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function isValidEmail(fieldId) {
         const field = document.getElementById(fieldId);
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(field.value)) {
-            showError(fieldId, "Please enter a valid email address.");
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(field.value.trim())) {
+            showError(field, "Enter a valid email address.");
             return false;
         }
         return true;
@@ -41,17 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function isValidUsername(fieldId) {
         const field = document.getElementById(fieldId);
         const usernamePattern = /^[a-zA-Z0-9_]{3,15}$/;
-        if (!usernamePattern.test(field.value)) {
-            showError(fieldId, "Username must be 3-15 characters long and contain only letters, numbers, and underscores.");
-            return false;
-        }
-        return true;
-    }
-
-    function isPositiveNumber(fieldId) {
-        const field = document.getElementById(fieldId);
-        if (isNaN(field.value) || field.value < 0) {
-            showError(fieldId, "Please enter a valid positive number.");
+        if (!usernamePattern.test(field.value.trim())) {
+            showError(field, "Username must be 3-15 characters (letters, numbers, underscores).");
             return false;
         }
         return true;
@@ -60,33 +62,48 @@ document.addEventListener("DOMContentLoaded", function () {
     function hasCheckedOption(name) {
         const options = document.getElementsByName(name);
         for (let option of options) {
-            if (option.checked) return true;
+            if (option.checked) {
+                return true;
+            }
         }
-        showError(name + "Error", "Please select an option.");
+        showError(options[0], "Please select an option.");
+        return false;
+    }
+
+    function hasCheckedCheckbox(name) {
+        const checkboxes = document.getElementsByName(name);
+        for (let checkbox of checkboxes) {
+            if (checkbox.checked) {
+                return true;
+            }
+        }
+        showError(checkboxes[0], "Please select at least one option.");
         return false;
     }
 
     function isSelected(fieldId) {
         const field = document.getElementById(fieldId);
         if (field.value === "") {
-            showError(fieldId, "Please select an option.");
+            showError(field, "Please select an option.");
             return false;
         }
         return true;
     }
 
-    function showError(fieldId, message) {
-        const errorElement = document.getElementById(fieldId + "Error");
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.add("error-visible");
+    function showError(inputElement, message) {
+        let errorSpan = inputElement.nextElementSibling;
+        if (!errorSpan || !errorSpan.classList.contains("error-message")) {
+            errorSpan = document.createElement("span");
+            errorSpan.className = "error-message";
+            errorSpan.style.color = "red";
+            errorSpan.style.fontSize = "0.9em";
+            inputElement.parentElement.appendChild(errorSpan);
         }
+        errorSpan.textContent = message;
     }
 
     function clearErrors() {
-        document.querySelectorAll(".error-message").forEach(error => {
-            error.textContent = "";
-            error.classList.remove("error-visible");
-        });
+        document.querySelectorAll(".error-message").forEach(error => error.remove());
     }
 });
+
