@@ -20,13 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // Validate checkboxes
         if (!hasCheckedCheckbox("genres")) isValid = false;
 
-        // Validate dropdown
-        if (!isSelected("favoriteGame")) isValid = false;
-
-        if (isValid) {
-            alert("Form submitted successfully!");
-            form.submit(); // Submit the form if all validations pass
+        // Prevent submission if any validation fails
+        if (!isValid) {
+            return; // Stop execution, form does NOT submit
         }
+
+        // If all validations pass, submit form
+        alert("Form submitted successfully!");
+        form.submit();
     });
 
     // Checks if a field is empty
