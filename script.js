@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent actual form submission
 
-        // Clear any previous error messages
+        // Clear previous error messages
         clearErrors();
 
         let isValid = true;
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Validation functions
+    // Checks if a field is empty
     function isNotEmpty(fieldId) {
         const field = document.getElementById(fieldId);
         if (field.value.trim() === "") {
@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Validates email format using regex
     function isValidEmail(fieldId) {
         const field = document.getElementById(fieldId);
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Validates username (letters, numbers, underscores, 3-15 chars)
     function isValidUsername(fieldId) {
         const field = document.getElementById(fieldId);
         const usernamePattern = /^[a-zA-Z0-9_]{3,15}$/;
@@ -59,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Checks if a radio button is selected
     function hasCheckedOption(name) {
         const options = document.getElementsByName(name);
         for (let option of options) {
@@ -66,10 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return true;
             }
         }
-        showError(options[0], "Please select an option.");
+        showError(options[0].parentElement, "Please select an option."); // Show error near first option
         return false;
     }
 
+    // Checks if at least one checkbox is selected
     function hasCheckedCheckbox(name) {
         const checkboxes = document.getElementsByName(name);
         for (let checkbox of checkboxes) {
@@ -77,10 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return true;
             }
         }
-        showError(checkboxes[0], "Please select at least one option.");
+        showError(checkboxes[0].parentElement, "Please select at least one option.");
         return false;
     }
 
+    // Checks if a dropdown option is selected
     function isSelected(fieldId) {
         const field = document.getElementById(fieldId);
         if (field.value === "") {
@@ -90,20 +95,29 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Displays error message next to invalid input
     function showError(inputElement, message) {
         let errorSpan = inputElement.nextElementSibling;
+
+        // Create error span if it doesn’t exist
         if (!errorSpan || !errorSpan.classList.contains("error-message")) {
             errorSpan = document.createElement("span");
             errorSpan.className = "error-message";
             errorSpan.style.color = "red";
             errorSpan.style.fontSize = "0.9em";
+            errorSpan.style.display = "block";
+            errorSpan.style.marginTop = "5px";
+            errorSpan.setAttribute("aria-live", "polite"); // Accessibility improvement
             inputElement.parentElement.appendChild(errorSpan);
         }
+
         errorSpan.textContent = message;
     }
 
+    // Clears all previous error messages
     function clearErrors() {
         document.querySelectorAll(".error-message").forEach(error => error.remove());
     }
 });
+
 
